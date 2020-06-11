@@ -42,3 +42,11 @@ button:active,
 button:focus {
   outline: none;
 }
+
+.form-control {
+  margin-bottom: 1.5rem;
+}
+
+.error {
+  color: tomato;
+}
