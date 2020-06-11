@@ -36,11 +36,11 @@ const YoutubeForm = () => {
     validate,
   });
 
-  console.log('Visited field', Formik.touched);
+  // console.log('Visited field', Formik.touched);
 
   return (
     <div className='container'>
-      <form onSubmit={Formik.handleSubmit}>
+      <form onSubmit={Formik.handleSubmit} autoCorrect='off' autoComplete='off'>
         <div className='form-control'>
           <label htmlFor='name'>Name</label>
           <input
@@ -51,7 +51,9 @@ const YoutubeForm = () => {
             onBlur={Formik.handleBlur}
             value={Formik.values.name}
           />
-          {Formik.errors.name && <p className='error'>{Formik.errors.name}</p>}
+          {Formik.touched.name && Formik.errors.name && (
+            <p className='error'>{Formik.errors.name}</p>
+          )}
         </div>
         <div className='form-control'>
           <label htmlFor='email'>Email</label>
@@ -63,7 +65,7 @@ const YoutubeForm = () => {
             onBlur={Formik.handleBlur}
             value={Formik.values.email}
           />
-          {Formik.errors.email && (
+          {Formik.touched.email && Formik.errors.email && (
             <p className='error'>{Formik.errors.email}</p>
           )}
         </div>
@@ -77,7 +79,7 @@ const YoutubeForm = () => {
             onBlur={Formik.handleBlur}
             value={Formik.values.channel}
           />
-          {Formik.errors.channel && (
+          {Formik.touched.channel && Formik.errors.channel && (
             <p className='error'>{Formik.errors.channel}</p>
           )}
         </div>
