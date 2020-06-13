@@ -37,6 +37,14 @@ const validationSchema = Yup.object({
   address: Yup.string().required('⚠ Address is required ⚠'),
 });
 
+const validateComments = (value) => {
+  let error;
+  if (!value) {
+    error = 'Required!';
+  }
+  return error;
+};
+
 const YoutubeForm = () => {
   return (
     <Formik
@@ -44,8 +52,8 @@ const YoutubeForm = () => {
       initialValues={initialValues}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
-      validateOnChange={false}
-      validateOnBlur={false}
+      // validateOnChange={false}
+      // validateOnBlur={false}
     >
       <Form>
         <div className='form-control'>
@@ -72,13 +80,14 @@ const YoutubeForm = () => {
             id='comments'
             name='comments'
             placeholder='Enter your comments here 😊'
+            validate={validateComments}
           />
+          <ErrorMessage name='comments' component={TextError} />
         </div>
         <div className='form-control'>
           <label htmlFor='address'>Address</label>
           <FastField name='address'>
             {(props) => {
-              console.log('form field');
               const { field, form, meta } = props;
               return (
                 <div>
@@ -101,7 +110,6 @@ const YoutubeForm = () => {
           <label htmlFor='phNumbers'>Phone Number/s</label>
           <FieldArray name='phNumbers'>
             {(fieldArrayProps) => {
-              console.log('form errors', fieldArrayProps.form.errors);
               const {
                 push,
                 remove,
