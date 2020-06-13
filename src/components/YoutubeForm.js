@@ -44,6 +44,8 @@ const YoutubeForm = () => {
       initialValues={initialValues}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
+      validateOnChange={false}
+      validateOnBlur={false}
     >
       <Form>
         <div className='form-control'>
@@ -99,6 +101,7 @@ const YoutubeForm = () => {
           <label htmlFor='phNumbers'>Phone Number/s</label>
           <FieldArray name='phNumbers'>
             {(fieldArrayProps) => {
+              console.log('form errors', fieldArrayProps.form.errors);
               const {
                 push,
                 remove,
